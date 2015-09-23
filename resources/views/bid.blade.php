@@ -22,7 +22,7 @@
 <script>
   var handler = StripeCheckout.configure({
     key: '{{Config::get('stripe.stripe.test_public')}}',
-    image: '/img/documentation/checkout/marketplace.png',
+    image: '{{asset('images/sugarcereal_logo3.png')}}',
     locale: 'auto'
   });
 
