@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Stripe\Stripe;
 use \Carbon\Carbon;
 use Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller 
 {
@@ -37,17 +38,17 @@ class HomeController extends Controller
 			$bid->email = \Input::get('stripeEmail');
 
 			$bid->amount = \Input::get('bid_amount');
-			$bid->stripe_txn_id = $charge->id;
+			$bid->stripe_token = \Input::get('token');
 			$bid->save();
 
-			return Redirect::to('showWelcome')->with('bid_success', true);
+			return Redirect::to('/')->with('bid_success', true);
 
 			//TODO
 			// email outbiddee
 
 			//get 2 highest bids from today, then take the lower of the two
 
-			Mail::send('emails.outbid', ['bid' => $bid], )
+			// Mail::send('emails.outbid', ['bid' => $bid], )
 			
 		}
 

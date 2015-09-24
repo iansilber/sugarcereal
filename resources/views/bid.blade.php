@@ -3,7 +3,7 @@
 
 <h1>Place a bid:</h1>
 
-{!! Form::open(array('url' => '/bid')) !!}
+{!! Form::open(array('url' => '/bid', 'id' => 'bidForm')) !!}
     
     <div>
         <label for="url">URL</label>
@@ -23,7 +23,13 @@
   var handler = StripeCheckout.configure({
     key: '{{Config::get('stripe.stripe.test_public')}}',
     image: '{{asset('images/sugarcereal_logo3.png')}}',
-    locale: 'auto'
+    locale: 'auto',
+    token: function(token) {
+      console.log(token);
+      $('#bidForm').submit();
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
   });
 
   $('#customButton').on('click', function(e) {
