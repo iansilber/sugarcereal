@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Controller;
 use Stripe\Stripe;
 use \Carbon\Carbon;
+use Mail;
 
 class HomeController extends Controller 
 {
@@ -31,26 +32,6 @@ class HomeController extends Controller
 
 		if (Request::isMethod('post')) {
 
-			//Authorize the bid
-			Stripe::setApiKey(\Config::get('stripe.stripe.test_secret'));
-			$token = \Input::get('stripeToken');
-
-			try {
-				$charge = \Stripe\Charge::create(array(
-					"amount" => \Input::get('bid_amount'),
-					"currency" => "usd",
-					"card" => $token,
-					"description" => "bid on sugarcereal",
-					"capture" => false)
-				);
-
-				print_r($charge);
-			} catch(\Stripe\CardError $e) {
-				$e_json = $e->getJsonBody();
-				$error = $e_json['error'];
-				return Redirect::to('bid')->withInput()->with('stripe_errors', $errors['message']);
-			}
-
 			$bid = Bid::create();
 			$bid->url = \Input::get('url');
 			$bid->email = \Input::get('stripeEmail');
@@ -63,6 +44,10 @@ class HomeController extends Controller
 
 			//TODO
 			// email outbiddee
+
+			//get 2 highest bids from today, then take the lower of the two
+
+			Mail::send('emails.outbid', ['bid' => $bid], )
 			
 		}
 
