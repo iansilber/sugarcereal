@@ -33,8 +33,7 @@ class Kernel extends ConsoleKernel
             $maxBid = Bid::where('created_at', '>=', $yesterday)->orderBy('amount', 'desc')->first();
 
             //Authorize the bid
-            Stripe::setApiKey(\Config::get('stripe.stripe.test_secret'));
-            $token = \Input::get('stripeToken');
+            Stripe::setApiKey(\Config::get('stripe.secret'));
 
             try {
                 $charge = \Stripe\Charge::create(array(

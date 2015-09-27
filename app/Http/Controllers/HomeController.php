@@ -14,6 +14,7 @@ class HomeController extends Controller
 {
 
 	public function showWelcome() {
+
 		$yesterday = new \DateTime('yesterday');
 		$bids = Bid::where('created_at', '>', $yesterday)->orderBy('amount', 'desc')->take(5)->get();
 		return view('homepage', ['bids' => $bids]);
@@ -25,7 +26,6 @@ class HomeController extends Controller
 		if ($maxBid) {
 			$maxBidAmount = $maxBid->amount;
 		} else {
-			echo "not found";
 			$maxBidAmount = 100;
 		}
 
@@ -33,22 +33,35 @@ class HomeController extends Controller
 
 		if (Request::isMethod('post')) {
 
+			//TODO check if Stripe was successful
+			//TODO validation
+
 			$bid = Bid::create();
 			$bid->url = \Input::get('url');
 			$bid->email = \Input::get('stripeEmail');
 
 			$bid->amount = \Input::get('bid_amount');
-			$bid->stripe_token = \Input::get('token');
+			$bid->stripe_token = \Input::get('_token');
 			$bid->save();
 
+			Mail::send('emails.successful_bid', array('bid' => $bid), function($message) use ($bid) {
+				$message->to($bid->email);
+				$message->subject("Thanks for bidding!");
+			});
+
+			$yesterday = new \DateTime('yesterday');
+			$bids = Bid::where('created_at', '>', $yesterday)->orderBy('amount', 'desc')->take(2)->get();
+
+			if (count($bids) == 2) {
+				$bid = $bids[1];
+				$data = array('bid' => $bid);
+				Mail::send('emails.outbid', $data, function($message) use ($bid) {
+					$message->to($bid->email);
+					$message->subject("You've been outbid!");
+				});
+			}
+
 			return Redirect::to('/')->with('bid_success', true);
-
-			//TODO
-			// email outbiddee
-
-			//get 2 highest bids from today, then take the lower of the two
-
-			// Mail::send('emails.outbid', ['bid' => $bid], )
 			
 		}
 
