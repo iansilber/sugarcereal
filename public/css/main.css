@@ -1,8 +1,23 @@
 @charset "utf-8";
 /* CSS Document */
 
+.top-bar {background: none; border-bottom: 1px solid #eee;}
 
-body {
+.top-bar li.name h1 a {color: #0F4AFC}
+.top-bar-section ul li {background: none;}
+.top-bar-section li:not(.has-form) a:not(.button) {background: none; color: #0F4AFC;}
+.top-bar-section li:not(.has-form) a:not(.button):hover {background: none; color: #0F4AFC;}
+
+#pushButton {
+    text-align: center!important;
+    margin: 100px auto;
+}
+
+#pushButton a {
+    display: block;
+}
+
+/*body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -22,4 +37,4 @@ html {
     right: 0;
 
     margin: auto;
-}
+}*/
