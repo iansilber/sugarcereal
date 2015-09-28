@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
-  <title>Place Bid</title>
+  <title><?= $title ?></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{{asset('css/main.css')}}" />
   <script src="{{asset('js/vendor/modernizr.js')}}"></script>
   <script src="{{asset('js/vendor/jquery.js')}}"></script>
+  <script src="{{asset('js/foundation.min.js')}}"></script>
+  <script src="{{asset('js/foundation/foundation.abide.js')}}"></script>
 
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -28,13 +30,11 @@
 
   <nav class="top-bar" data-topbar role="navigation">
 
-    <? if (!isset($hideHome)) { ?>
     <ul class="title-area">
     <li class="name">
       <h1><a href="./">Sugar Cereal</a></h1>
     </li>
     </ul>
-    <? } ?>
 
   <section class="top-bar-section">
     <ul class="right">

@@ -26,10 +26,10 @@ class HomeController extends Controller
 		if ($maxBid) {
 			$maxBidAmount = $maxBid->amount;
 		} else {
-			$maxBidAmount = 100;
+			$maxBidAmount = 1;
 		}
 
-		$maxBidAmount += 100;
+		$maxBidAmount += 1;
 
 		if (Request::isMethod('post')) {
 

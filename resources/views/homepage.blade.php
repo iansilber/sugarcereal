@@ -1,4 +1,4 @@
-<?= View::make('partials/header', array('hideHome' => true)); ?>
+<?= View::make('partials/header', array('title' => 'Sugar Cereal')); ?>
 
 	<div class="row">
 		<div id="pushButton">
