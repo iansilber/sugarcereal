@@ -77,6 +77,9 @@ class HomeController extends Controller
 			});
 		}
 
+		$request->session()->flash('flash_message', 'You\'re currently the highest bidder!');
+		$request->session()->flash('flash_type', 'success');
+
 		return Redirect::to('/')->with('bid_success', true);
 			
 	}

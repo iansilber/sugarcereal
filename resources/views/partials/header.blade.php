@@ -41,3 +41,14 @@
       <li><a href="bid">Place Bid</a></li>
     </ul>
   </nav>
+
+  @if (Session::has('flash_message'))
+  <div class="row">
+    <div class="large-12 columns">
+      <div data-alert class="alert-box {{Session::get('flash_type')}}">
+        {{Session::get('flash_message')}}
+      </div>
+    </div>
+  </div>
+  @endif
+
