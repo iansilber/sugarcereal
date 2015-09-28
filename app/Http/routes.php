@@ -13,4 +13,4 @@
 
 Route::get('/', 'HomeController@showWelcome');
 Route::get('/bid', 'HomeController@bid');
-Route::post('/bid', 'HomeController@bid');
+Route::post('/bid', 'HomeController@store');

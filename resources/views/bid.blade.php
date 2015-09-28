@@ -1,6 +1,18 @@
 
 <?= View::make('partials/header', array('title' => 'Place Bid')); ?>
 
+@if (count($errors) > 0)
+<div class="row">
+  <div class="large-12 columns">
+    <div data-alert class="alert-box alert">
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br />
+            @endforeach
+    </div>
+  </div>
+</div>
+@endif
+
   {!! Form::open(array('url' => '/bid', 'id' => 'bidForm', 'data-abide' => 'ajax')) !!}
   <div class="row">
     <div class="large-12 columns">
@@ -24,8 +36,8 @@
 
               <label>Bid</label>
               <div class="small-3 columns"><span class="prefix">$</span></div>
-              <div class="small-5 columns">{!! Form::text('bid_amount', $maxBidAmount, array('id' => 'bid_amount', 'placeholder' => 'bid_amount', 'required' => true, 'pattern' => 'number', 'data-abide-validator' => 'minBid')) !!}
-                <small class="error">Enter a number greater than <?= $maxBidAmount - 1 ?></small>
+              <div class="small-5 columns">{!! Form::text('bid_amount', $min_bid_amount, array('id' => 'bid_amount', 'placeholder' => 'bid_amount', 'required' => true, 'pattern' => 'number', 'data-abide-validator' => 'minBid')) !!}
+                <small class="error">Enter a number greater than <?= $min_bid_amount - 1 ?></small>
               </div>
               <div class="small-4 columns"><span class="postfix">.00</span></div>
           </div>
@@ -100,7 +112,7 @@
 
       validators: {
         minBid: function(el, required, parent) {
-      return (el.value >= <?= $maxBidAmount ?>) ? true : false;
+      return (el.value >= <?= $min_bid_amount ?>) ? true : false;
         },
         diceRoll: function(el, required, parent) {
           var possibilities = [true, false];
@@ -113,6 +125,8 @@
       }
     }
   });
+
+
   </script>
 
 
