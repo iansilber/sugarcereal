@@ -1,13 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 
-.top-bar {background: none; border-bottom: 1px solid #eee;}
+/*.top-bar {background: none; border-bottom: 1px solid #eee;}
 
 .top-bar li.name h1 a {color: #0F4AFC}
 .top-bar-section ul li {background: none;}
 .top-bar-section li:not(.has-form) a:not(.button) {background: none; color: #0F4AFC;}
 .top-bar-section li:not(.has-form) a:not(.button):hover {background: none; color: #0F4AFC;}
-
+*/
 #pushButton {
     text-align: center!important;
     margin: 100px auto;

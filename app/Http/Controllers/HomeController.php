@@ -15,18 +15,31 @@ class HomeController extends Controller
 
 	public function showWelcome() {
 
+		$today = new \DateTime('today');
+		$bids = Bid::where('created_at', '>', $today)->orderBy('amount', 'desc')->take(5)->get();
+
 		$yesterday = new \DateTime('yesterday');
-		$bids = Bid::where('created_at', '>', $yesterday)->orderBy('amount', 'desc')->take(5)->get();
-		return view('homepage', ['bids' => $bids]);
+		$winning_bid = Bid::where('created_at', '>', $yesterday)->where('created_at', '<=', $today)->orderBy('amount', 'desc')->first();
+
+		if ($winning_bid) {
+			$winning_url = $winning_bid->url;
+		} else {
+			$random_urls = \Config::get('urls');
+			srand(mktime(0, 0, 0));
+			$random_url_index = rand(0, count($random_urls));
+			$winning_url = $random_urls[$random_url_index];
+		}
+
+		return view('homepage', ['bids' => $bids, 'winning_url' => $winning_url]);
 	}
 
 	public function bid($input = array()) {
-		$yesterday = new \DateTime('yesterday');
-		$bid = Bid::where('created_at', '>=', $yesterday)->orderBy('amount', 'desc')->first();
+		$today = new \DateTime('today');
+		$bid = Bid::where('created_at', '>=', $today)->orderBy('amount', 'desc')->first();
 		if ($bid) {
 			$min_bid_amount = $bid->amount;
 		} else {
-			$min_bid_amount = 1;
+			$min_bid_amount = 0;
 		}
 
 		$min_bid_amount += 1;
@@ -37,12 +50,12 @@ class HomeController extends Controller
 
 		//TODO check if Stripe was successful
 		//TODO validation
-		$yesterday = new \DateTime('yesterday');
-		$bid = Bid::where('created_at', '>=', $yesterday)->orderBy('amount', 'desc')->first();
+		$today = new \DateTime('today');
+		$bid = Bid::where('created_at', '>=', $today)->orderBy('amount', 'desc')->first();
 		if ($bid) {
 			$min_bid_amount = $bid->amount;
 		} else {
-			$min_bid_amount = 1;
+			$min_bid_amount = 0;
 		}
 
 		$min_bid_amount += 1;
@@ -65,8 +78,8 @@ class HomeController extends Controller
 			$message->subject("Thanks for bidding!");
 		});
 
-		$yesterday = new \DateTime('yesterday');
-		$bids = Bid::where('created_at', '>', $yesterday)->orderBy('amount', 'desc')->take(2)->get();
+		$today = new \DateTime('today');
+		$bids = Bid::where('created_at', '>', $today)->orderBy('amount', 'desc')->take(2)->get();
 
 		if (count($bids) == 2) {
 			$bid = $bids[1];

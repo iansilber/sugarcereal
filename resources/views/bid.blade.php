@@ -47,7 +47,7 @@
       <div class="row">
         <div class="large-12 columns">
           <script src="https://checkout.stripe.com/checkout.js"></script>
-          <button id="customButton" type="submit">Purchase</button>
+          <button id="customButton" type="submit">Place Bid</button>
         </div>
       </div>
 

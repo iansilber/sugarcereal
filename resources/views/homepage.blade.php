@@ -2,7 +2,7 @@
 
 	<div class="row">
 		<div id="pushButton">
-				<a href="http://www.facebook.com/iansilber">{!! HTML::image('images/sugarcereal_logo3.png', 'logo', array('width' => '200px', 'height' => '200px')); !!}</a>
+				<a href="{{$winning_url}}">{!! HTML::image('images/pushme.png', 'logo', array('width' => '200px', 'height' => '200px')); !!}</a>
 		</div>
 	</div>
 
@@ -15,6 +15,10 @@
 			<?php foreach ($bids as $bid) { ?>
 				<li><?= $bid->url ?> $<?= $bid->amount ?></li>
 				<li> / </li>
+			<?php } ?>
+
+			<?php if (count($bids) == 0) { ?>
+				<li>No bids today</li>
 			<?php } ?>
 			</ul>
 		</div>
