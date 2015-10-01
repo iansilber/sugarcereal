@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', 'HomeController@showWelcome');
-Route::get('/bid', 'HomeController@bid');
-Route::post('/bid', 'HomeController@store');
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@showWelcome']);
+Route::get('bid', ['as' => 'bid', 'uses' => 'HomeController@bid']);
+Route::post('bid', 'HomeController@store');
+
+Route::get('charge', ['as' => 'charge', 'uses' => 'HomeController@charge']);
+
+Route::get('terms', ['as' => 'terms', function () {
+    return View::make('terms');
+}]);
+
+Route::get('about', ['as' => 'about', function () {
+    return View::make('about');
+}]);

@@ -28,27 +28,29 @@
 </head>
 <body>
 
-  <nav class="top-bar" data-topbar role="navigation">
+  <div id="wrapper">
 
-    <ul class="title-area">
-    <li class="name">
-      <h1><a href="./">Sugar Cereal</a></h1>
-    </li>
-    </ul>
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name"><h1><a href="./">Sugar Cereal</a></h1></li>
+      </ul>
 
-  <section class="top-bar-section">
-    <ul class="right">
-      <li><a href="bid">Place Bid</a></li>
-    </ul>
-  </nav>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="bid">Place Bid</a></li>
+        </ul>
+      </section>
+    </nav>
 
-  @if (Session::has('flash_message'))
-  <div class="row">
-    <div class="large-12 columns">
-      <div data-alert class="alert-box {{Session::get('flash_type')}}">
-        {{Session::get('flash_message')}}
+    @if (Session::has('flash_message'))
+    <div class="row">
+      <div class="large-12 columns">
+        <div data-alert class="alert-box {{Session::get('flash_type')}}">
+          {{Session::get('flash_message')}}
+        </div>
       </div>
     </div>
-  </div>
-  @endif
+    @endif
 
+
+    <div id="body">

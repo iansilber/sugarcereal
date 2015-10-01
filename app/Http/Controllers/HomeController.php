@@ -49,7 +49,6 @@ class HomeController extends Controller
 	public function store(Request $request) {
 
 		//TODO check if Stripe was successful
-		//TODO validation
 		$today = new \DateTime('today');
 		$bid = Bid::where('created_at', '>=', $today)->orderBy('amount', 'desc')->first();
 		if ($bid) {
@@ -65,12 +64,18 @@ class HomeController extends Controller
 			'bid_amount' => 'required|numeric|min:' . $min_bid_amount,
 		]);
 
+		Stripe::setApiKey(\Config::get('services.stripe.secret'));
+		$customer = \Stripe\Customer::create(array(
+			"source" => \Input::get('stripeToken'),
+			"email" => \Input::get('stripeEmail')
+		));
+
 		$bid = Bid::create();
 		$bid->url = \Input::get('url');
 		$bid->email = \Input::get('stripeEmail');
 
 		$bid->amount = \Input::get('bid_amount');
-		$bid->stripe_token = \Input::get('_token');
+		$bid->stripe_customer_id = $customer->id;
 		$bid->save();
 
 		Mail::send('emails.successful_bid', array('bid' => $bid), function($message) use ($bid) {
@@ -95,6 +100,10 @@ class HomeController extends Controller
 
 		return Redirect::to('/')->with('bid_success', true);
 			
+	}
+
+	public function charge() {
+
 	}
 
 }
