@@ -1,58 +1,65 @@
 
 <?= View::make('partials/header', array('title' => 'Place Bid')); ?>
 
-@if (count($errors) > 0)
 <div class="row">
-  <div class="large-12 columns">
-    <div data-alert class="alert-box alert">
-            @foreach ($errors->all() as $error)
-                {{ $error }}<br />
-            @endforeach
-    </div>
-  </div>
-</div>
-@endif
-
-{!! Form::open(array('url' => '/bid', 'id' => 'bidForm', 'data-abide' => 'ajax')) !!}
-<div class="row">
-  <div class="large-12 columns">
-    <h1>Place Bid</h1>
-  </div>
-</div>
-
-  
-      
-<div class="row">
-  <div class="large-6 medium-6 columns">
-    <label>URL
-     {!! Form::text('url', \Input::get('url'), array('placeholder' => 'url', 'required' => true, 'pattern' => 'url')) !!}
-    </label>
-    <small class="error">URL is required and must be a valid url including http.</small>
-  </div>
-</div>
-<div class="row">
-  <div class="large-2 medium-2 columns">
-    <div class="row collapse">
-
-        <label>Bid</label>
-        <div class="small-3 columns"><span class="prefix">$</span></div>
-        <div class="small-5 columns">{!! Form::text('bid_amount', $min_bid_amount, array('id' => 'bid_amount', 'placeholder' => 'bid_amount', 'required' => true, 'pattern' => 'number', 'data-abide-validator' => 'minBid')) !!}
-          <small class="error">Enter a number greater than <?= $min_bid_amount - 1 ?></small>
+  <div class="small-12 medium-10 large-8 small-centered columns">
+    <div class="container">
+    @if (count($errors) > 0)
+    <div class="row">
+      <div class="large-12 columns">
+        <div data-alert class="alert-box alert">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br />
+                @endforeach
         </div>
-        <div class="small-4 columns"><span class="postfix">.00</span></div>
+      </div>
+    </div>
+    @endif
+
+    {!! Form::open(array('url' => '/bid', 'id' => 'bidForm', 'data-abide' => 'ajax')) !!}
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Place a bid</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+
+      
+          
+    <div class="row">
+      <div class="small-12 columns">
+        <label>URL
+         {!! Form::text('url', \Input::get('url'), array('placeholder' => 'url', 'required' => true, 'pattern' => 'url', 'class' => 'radius')) !!}
+        </label>
+        <small class="error">URL is required and must be a valid url including http.</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 medium-4 columns">
+        <div class="row collapse prefix-radius">
+
+            <label>Bid</label>
+            <div class="small-3 columns"><span class="prefix">$</span></div>
+            <div class="small-6 columns">{!! Form::input('number', 'bid_amount', $min_bid_amount, array('id' => 'bid_amount', 'placeholder' => 'bid_amount', 'required' => true, 'pattern' => 'number', 'data-abide-validator' => 'minBid', 'min' => $min_bid_amount)) !!}
+              <small class="error">Enter a number greater than <?= $min_bid_amount - 1 ?></small>
+            </div>
+            <div class="small-3 columns"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <p>By bidding, you agree to the <a href="{{route('terms')}}">Terms of Service</a></p>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <button id="customButton" type="submit" class="radius">Place Bid</button>
+      </div>
+    </div>
+
+    {!! Form::close() !!}
     </div>
   </div>
 </div>
-
-<div class="row">
-  <div class="large-12 columns">
-    <p>By bidding, you agree to the <a href="{{route('terms')}}">Terms of Service</a></p>
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <button id="customButton" type="submit">Place Bid</button>
-  </div>
-</div>
-
-{!! Form::close() !!}
 
   <script>
 
@@ -123,6 +130,4 @@ $(document).foundation({
 
 
 </script>
-
-
   <?= View::make('partials/footer'); ?>

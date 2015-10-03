@@ -6,21 +6,21 @@
 		</div>
 	</div>
 
+	<div class="top-five">
+		<div class="row">
+			<div class="large-12 columns">
+				<p><strong>Today's top 5 bids:</strong></p>
+				<ul>
+					
+				<?php foreach ($bids as $bid) { ?>
+					<li><?= $bid->url ?></li>
+				<?php } ?>
 
-	<div class="row">
-		<div class="large-12 columns">
-
-			<ul class="inline-list">
-				<li><strong>Today's top 5 bids:</strong></li>
-			<?php foreach ($bids as $bid) { ?>
-				<li><?= $bid->url ?> $<?= $bid->amount ?></li>
-				<li> / </li>
-			<?php } ?>
-
-			<?php if (count($bids) == 0) { ?>
-				<li>No bids today</li>
-			<?php } ?>
-			</ul>
+				<?php if (count($bids) == 0) { ?>
+					<li>No bids today</li>
+				<?php } ?>
+				</ul>
+			</div>
 		</div>
 	</div>
 

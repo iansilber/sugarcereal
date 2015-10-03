@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <link rel="stylesheet" href="{{asset('css/normalize.css')}}" />
-  <link rel="stylesheet" href="{{asset('css/foundation.min.css')}}" />
-  <link rel="stylesheet" href="{{asset('css/main.css')}}" />
+  <link rel="stylesheet" href="{{asset('css/app.css')}}" />
   <script src="{{asset('js/vendor/modernizr.js')}}"></script>
   <script src="{{asset('js/vendor/jquery.js')}}"></script>
   <script src="{{asset('js/foundation.min.js')}}"></script>
