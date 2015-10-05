@@ -2,7 +2,8 @@
 
 	<div class="row">
 		<div id="pushButton">
-				<a href="{{$winning_url}}">{!! HTML::image('images/pushme.png', 'logo', array('width' => '200px', 'height' => '200px')); !!}</a>
+				<!-- <a href="{{$winning_url}}">{!! HTML::image('images/pushme.png', 'logo', array('width' => '200px', 'height' => '200px')); !!}</a> -->
+				<a href="{{$winning_url}}">Push me!</a>
 		</div>
 	</div>
 

@@ -16,10 +16,10 @@ class HomeController extends Controller
 	public function showWelcome() {
 
 		$today = new \DateTime('today');
-		$bids = Bid::where('created_at', '>', $today)->orderBy('amount', 'desc')->take(5)->get();
+		$bids = Bid::where('rejected', '!=', 1)->where('created_at', '>', $today)->orderBy('amount', 'desc')->take(5)->get();
 
 		$yesterday = new \DateTime('yesterday');
-		$winning_bid = Bid::where('created_at', '>', $yesterday)->where('created_at', '<=', $today)->orderBy('amount', 'desc')->first();
+		$winning_bid = Bid::where('rejected', '!=', 1)->where('created_at', '>', $yesterday)->where('created_at', '<=', $today)->orderBy('amount', 'desc')->first();
 
 		if ($winning_bid) {
 			$winning_url = $winning_bid->url;
@@ -35,7 +35,7 @@ class HomeController extends Controller
 
 	public function bid($input = array()) {
 		$today = new \DateTime('today');
-		$bid = Bid::where('created_at', '>=', $today)->orderBy('amount', 'desc')->first();
+		$bid = Bid::where('rejected', '!=', 1)->where('created_at', '>=', $today)->orderBy('amount', 'desc')->first();
 		if ($bid) {
 			$min_bid_amount = $bid->amount;
 		} else {
@@ -50,7 +50,7 @@ class HomeController extends Controller
 
 		//TODO check if Stripe was successful
 		$today = new \DateTime('today');
-		$bid = Bid::where('created_at', '>=', $today)->orderBy('amount', 'desc')->first();
+		$bid = Bid::where('rejected', '!=', 1)->where('created_at', '>=', $today)->orderBy('amount', 'desc')->first();
 		if ($bid) {
 			$min_bid_amount = $bid->amount;
 		} else {
@@ -84,7 +84,7 @@ class HomeController extends Controller
 		});
 
 		$today = new \DateTime('today');
-		$bids = Bid::where('created_at', '>', $today)->orderBy('amount', 'desc')->take(2)->get();
+		$bids = Bid::where('rejected', '!=', 1)->where('created_at', '>', $today)->orderBy('amount', 'desc')->take(2)->get();
 
 		if (count($bids) == 2) {
 			$bid = $bids[1];

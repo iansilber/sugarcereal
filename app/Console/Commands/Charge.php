@@ -54,7 +54,7 @@ class Charge extends Command
     {
         $today = new \DateTime('today');
         $yesterday = new \DateTime('yesterday');
-        $winning_bid = Bid::where('created_at', '>', $yesterday)->where('created_at', '<=', $today)->orderBy('amount', 'desc')->first();
+        $winning_bid = Bid::where('rejected', '!=', 1)->where('created_at', '>', $yesterday)->where('created_at', '<=', $today)->orderBy('amount', 'desc')->first();
 
         if (is_null($winning_bid)) {
             $this->comment("No winning bid found.");

@@ -4,13 +4,14 @@
   <title><?= $title ?></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,100' rel='stylesheet' type='text/css'>
   
   <link rel="stylesheet" href="{{asset('css/app.css')}}" />
   <script src="{{asset('js/vendor/modernizr.js')}}"></script>
   <script src="{{asset('js/vendor/jquery.js')}}"></script>
   <script src="{{asset('js/foundation.min.js')}}"></script>
   <script src="{{asset('js/foundation/foundation.abide.js')}}"></script>
+  <script src="{{asset('js/app.js')}}"></script>
 
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
