@@ -1,0 +1,4 @@
+<p>Congratulations! You’re on your way to stardom and fame... or at least a day in the glow of the spotlight of the internet.</p>
+<p>We’ll notify you by email if you get outbid, but as long as you’re one of the top 5 bidders of the day, you will see where you sit in the standings. Share <a href="http://www.sugarcereal.com">Sugar Cereal</a> with your friends and family to get them excited for what could potentially be your big day tomorrow.</p>
+<p>If you win your link will be center stage for the day, going live at midnight PST and staying there for the next 24 hours. We will notify you by email if you do in fact win.</p>
+<p>Now go have a bowl of sugar cereal and have a sweet day!</p>

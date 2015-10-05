@@ -10,7 +10,7 @@
 	<div class="top-five">
 		<div class="row">
 			<div class="large-12 columns">
-				<p><strong>Today's top 5 bids:</strong></p>
+				<p><strong>Today's top bids:</strong></p>
 				<ul>
 					
 				<?php foreach ($bids as $bid) { ?>
