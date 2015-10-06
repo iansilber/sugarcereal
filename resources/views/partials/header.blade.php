@@ -13,6 +13,8 @@
   <script src="{{asset('js/foundation/foundation.abide.js')}}"></script>
   <script src="{{asset('js/app.js')}}"></script>
 
+  <link rel="shortcut icon" href="{{asset('favicon.ico')}}"/>
+
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -29,16 +31,11 @@
 
   <div id="wrapper">
 
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name"><h1><a href="./">Sugar Cereal</a></h1></li>
+    <nav class="my-top-bar">
+      <h1><a href="{{route('home')}}">Sugar Cereal</a></h1>
+      <ul class="nav">
+        <li><a href="{{route('bid')}}"><strong>Place Bid</strong></a></li>
       </ul>
-
-      <section class="top-bar-section">
-        <ul class="right">
-          <li><a href="bid">Place Bid</a></li>
-        </ul>
-      </section>
     </nav>
 
     @if (Session::has('flash_message'))

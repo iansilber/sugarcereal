@@ -3,6 +3,7 @@
 
 <script>
 function push_me_now() {
+	ga('send', 'event', 'push_button', 'click');
 	window.open('{{$winning_url}}');
 }
 </script>

@@ -26,13 +26,15 @@ $(function() {
 			// }
 
 			$('#pushButton a').css('background-color', '#' + rainbow[Math.floor(Math.random()*rainbow.length)], 200);
-			$('body').css('background-color', '#' + rainbow[Math.floor(Math.random()*rainbow.length)]);
-			$('.top-bar, .top-five, .footer').css('visibility', 'hidden');
+			// $('body').css('background-color', '#' + rainbow[Math.floor(Math.random()*rainbow.length)]);
+			$('body').css('background-image', 'url(https://media.giphy.com/media/G0nTMRctvIp4Q/giphy.gif)');
+			$('body').css('background-size', '15%');
+			$('.my-top-bar, .top-five, .footer').css('visibility', 'hidden');
 		}, 50);
 
 	}, function() {
 		clearInterval(backgrounder);
-		$('#pushButton a, body, .top-bar, .top-five, .footer').removeAttr('style');
+		$('#pushButton a, body, .my-top-bar, .top-five, .footer').removeAttr('style');
 		// $('body').css('background-color', 'white');
 		// $('.top-bar, .top-five, .footer').css('visibility', '');
 	});
