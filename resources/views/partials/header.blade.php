@@ -41,7 +41,8 @@
   <div id="wrapper">
 
     <nav class="my-top-bar">
-      <h1><a href="{{route('home')}}">Sugar Cereal</a></h1>
+
+      <h1><a href="{{route('home')}}"><img src="{{asset('images/logo.png')}}" width="106" height="21" /></a></h1>
       <ul class="nav">
         <li><a href="{{route('bid')}}"><strong>Place Bid</strong></a></li>
       </ul>
