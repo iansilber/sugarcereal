@@ -12,13 +12,13 @@ $(function() {
 	    });
 	}
 	var backgroundImage;
-	var backgrounder;
 
 	$.getJSON('https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function(data) {
 		backgroundImage = data.data.fixed_height_small_url;
 		preload([backgroundImage]);
 	});
 
+	var backgrounder;
 	$('#pushButton a').hover(function() {
 		var i = 0;
 		var increasing = true;
@@ -51,5 +51,19 @@ $(function() {
 			preload([backgroundImage]);
 		});
 
+	});
+
+	var rotater;
+	$('#pushButton').hover(function() {
+		var i = 0;
+
+		rotater = setInterval(function() {
+			i+=2;
+			$('#pushButton a').css('transform', 'rotate(' + i + 'deg)');	
+		}, 1);
+		
+	}, function() {
+		clearInterval(rotater);
+		$('#pushButton a').removeAttr('style');
 	});
 })
