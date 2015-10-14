@@ -1,5 +1,4 @@
 /bootstrap/compiled.php
-/public/.htaccess-default
 .env.*.php
 .env.php
 .env
