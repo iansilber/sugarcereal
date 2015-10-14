@@ -2,6 +2,7 @@ $(function() {
 
 	if ($('input[name=url]').val() == '') {
 		$('input[name=url]').val('http://');
+		$('input[name=url]').focus();
 	}
 
 	function preload(arrayOfImages) {
@@ -54,7 +55,7 @@ $(function() {
 	});
 
 	var rotater;
-	$('#pushButton').hover(function() {
+	$('#pushButton a').hover(function() {
 		var i = 0;
 
 		rotater = setInterval(function() {
