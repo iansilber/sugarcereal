@@ -20,7 +20,7 @@ $(function() {
 
 		}, 50);
 
-		$.getJSON('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function(data) {
+		$.getJSON('https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function(data) {
 			$('body').css('background-image', 'url(' + data.data.fixed_height_small_url + ')');
 		});
 
