@@ -22,7 +22,10 @@
         <h1>Place a bid</h1>
         <p>Look at you, so ambitious. Your mom and dad would be very proud.</p>
 		<p>Be warned, the Sugar Cereal homepage is a coveted and much sought after trophy. The winner of today’s bid will be awarded with their submitted URL as the spotlight of the internet with placement on the Push Me button, front and center.</p>
-		<p>We wish you luck. </p>
+		<p>We wish you luck.</p>
+    @if ($min_bid_amount > 1)
+    <p><strong>Today's current winning bid is: ${{$min_bid_amount - 1}}</strong></p>
+    @endif
       </div>
     </div>
 

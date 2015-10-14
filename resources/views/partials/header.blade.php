@@ -11,6 +11,7 @@
   <script src="{{asset('js/vendor/jquery.js')}}"></script>
   <script src="{{asset('js/foundation.min.js')}}"></script>
   <script src="{{asset('js/foundation/foundation.abide.js')}}"></script>
+  <script src="{{asset('js/foundation/foundation.alert.js')}}"></script>
   <script src="{{asset('js/app.js')}}"></script>
 
   <link rel="shortcut icon" href="{{asset('favicon.ico')}}"/>
@@ -29,6 +30,14 @@
 </head>
 <body>
 
+  @if (Session::has('flash_message'))
+  <div data-alert class="alert-box {{Session::get('flash_type')}}">
+    {{Session::get('flash_message')}}
+    <a href="#" class="close">&times;</a>
+  </div>
+  @endif
+
+
   <div id="wrapper">
 
     <nav class="my-top-bar">
@@ -37,16 +46,5 @@
         <li><a href="{{route('bid')}}"><strong>Place Bid</strong></a></li>
       </ul>
     </nav>
-
-    @if (Session::has('flash_message'))
-    <div class="row">
-      <div class="large-12 columns">
-        <div data-alert class="alert-box {{Session::get('flash_type')}}">
-          {{Session::get('flash_message')}}
-        </div>
-      </div>
-    </div>
-    @endif
-
 
     <div id="body">

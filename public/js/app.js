@@ -15,27 +15,19 @@ $(function() {
 				i++;
 			}
 
-			// if (i == 0) {
-			// 	increasing = true;
-			// }
-
-			// if (increasing) {
-			// 	i++;
-			// } else {
-			// 	i--;
-			// }
-
+			$('body').addClass('on_pushbutton');
 			$('#pushButton a').css('background-color', '#' + rainbow[Math.floor(Math.random()*rainbow.length)], 200);
-			// $('body').css('background-color', '#' + rainbow[Math.floor(Math.random()*rainbow.length)]);
-			$('body').css('background-image', 'url(https://media.giphy.com/media/G0nTMRctvIp4Q/giphy.gif)');
-			$('body').css('background-size', '15%');
-			$('.my-top-bar, .top-five, .footer').css('visibility', 'hidden');
+
 		}, 50);
+
+		$.getJSON('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function(data) {
+			$('body').css('background-image', 'url(' + data.data.fixed_height_small_url + ')');
+		});
+
 
 	}, function() {
 		clearInterval(backgrounder);
-		$('#pushButton a, body, .my-top-bar, .top-five, .footer').removeAttr('style');
-		// $('body').css('background-color', 'white');
-		// $('.top-bar, .top-five, .footer').css('visibility', '');
+		$('body, #pushButton a').removeAttr('style');
+		$('body').removeClass('on_pushbutton');
 	});
 })
