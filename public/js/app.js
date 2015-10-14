@@ -1,5 +1,9 @@
 $(function() {
 
+	if ($('input[name=url]').val() == '') {
+		$('input[name=url]').val('http://');
+	}
+
 	function preload(arrayOfImages) {
 	    $(arrayOfImages).each(function(){
 	        $('<img/>')[0].src = this;

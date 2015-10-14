@@ -24,3 +24,7 @@ Route::get('terms', ['as' => 'terms', function () {
 Route::get('about', ['as' => 'about', function () {
     return View::make('about');
 }]);
+
+Route::get('test', ['as' => 'test', function () {
+    return View::make('test');
+}]);
