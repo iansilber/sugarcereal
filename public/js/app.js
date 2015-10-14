@@ -1,5 +1,20 @@
 $(function() {
+
+	function preload(arrayOfImages) {
+	    $(arrayOfImages).each(function(){
+	        $('<img/>')[0].src = this;
+	        // Alternatively you could use:
+	        // (new Image()).src = this;
+	    });
+	}
+	var backgroundImage;
 	var backgrounder;
+
+	$.getJSON('https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function(data) {
+		backgroundImage = data.data.fixed_height_small_url;
+		preload([backgroundImage]);
+	});
+
 	$('#pushButton a').hover(function() {
 		var i = 0;
 		var increasing = true;
@@ -17,17 +32,20 @@ $(function() {
 
 			$('body').addClass('on_pushbutton');
 			$('#pushButton a').css('background-color', '#' + rainbow[Math.floor(Math.random()*rainbow.length)], 200);
+			$('body').css('background-image', 'url(' + backgroundImage + ')');
 
 		}, 50);
 
-		$.getJSON('https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function(data) {
-			$('body').css('background-image', 'url(' + data.data.fixed_height_small_url + ')');
-		});
 
 
 	}, function() {
 		clearInterval(backgrounder);
 		$('body, #pushButton a').removeAttr('style');
 		$('body').removeClass('on_pushbutton');
+		$.getJSON('https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC', function(data) {
+			backgroundImage = data.data.fixed_height_small_url;
+			preload([backgroundImage]);
+		});
+
 	});
 })
