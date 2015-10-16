@@ -34,7 +34,7 @@
     <div class="row">
       <div class="small-12 columns">
         <label>URL
-         {!! Form::text('url', \Input::get('url'), array('placeholder' => 'url', 'required' => true, 'pattern' => 'url', 'class' => 'radius')) !!}
+         {!! Form::text('url', base64_decode(\Input::get('url')), array('placeholder' => 'url', 'required' => true, 'pattern' => 'url', 'class' => 'radius')) !!}
         </label>
         <small class="error">URL is required and must be a valid url including http.</small>
       </div>
