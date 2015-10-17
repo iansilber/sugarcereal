@@ -54,9 +54,10 @@
     </div>
     <div class="row">
       <div class="large-12 columns">
-        <p>By bidding, you agree to the <a href="{{route('terms')}}">Terms of Service</a></p>
+        <p>You will only be charged if you the highest bidder at midnight PST.</p>
         <script src="https://checkout.stripe.com/checkout.js"></script>
         <button id="customButton" type="submit" class="radius">Place Bid</button>
+        <p>By bidding, you agree to the <a href="{{route('terms')}}">Terms of Service</a>.</p>
       </div>
     </div>
 
@@ -73,8 +74,8 @@
       key: '{{Config::get('services.stripe.public')}}',
       image: '{{asset('images/sugarcereal_logo3.png')}}',
       locale: 'auto',
+      panelLabel: 'Bid \{\{amount\}\}',
       token: function(token) {
-        console.log(token);
         var $theEmail = $('<input type=hidden name=stripeEmail />').val(token.email);
         var $theToken = $('<input type=hidden name=stripeToken />').val(token.id);
         $('#bidForm').append($theEmail);
@@ -92,7 +93,7 @@
       // Open Checkout with further options
       handler.open({
         name: 'Sugar Cereal',
-        description: 'Bid',
+        description: 'Top bid is charged at midnight PST',
         amount: $('#bid_amount').val() * 100
       }, function() {
 
